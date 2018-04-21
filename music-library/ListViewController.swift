@@ -19,25 +19,33 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loading()
         
         if !isAppAlreadyLaunchedOnce() {
             
-            UserDefaults.standard.setValue(0, forKey: "id")
+            UserDefaults.standard.set(0, forKey: "id")
+            UserDefaults.standard.set("Last Added", forKey: "sorting")
+            UserDefaults.standard.set("↓", forKey: "sortingOrder")
             
         }
+        
+        loading()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        loading()
+        
     }
     
     func isAppAlreadyLaunchedOnce() -> Bool {
         
         if UserDefaults.standard.bool(forKey: "isAppAlreadyLaunchedOnce") {
-            print("true")
             return true
             
         } else {
             
             UserDefaults.standard.set(true, forKey: "isAppAlreadyLaunchedOnce")
-            print("false")
             return false
         }
         
@@ -69,7 +77,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let record = records[indexPath.row]
         
         cell.artistLabel.text = record.value(forKey: "artist") as? String
-        cell.titleLabel.text = record.value(forKey: "title") as? String
+        cell.nameLabel.text = record.value(forKey: "title") as? String
         cell.albumLabel.text = String(describing: record.value(forKey: "album")!) + " (" + String(describing: record.value(forKey: "year")!) + ")"
         
         return cell
@@ -104,6 +112,48 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Data")
         do {
             records = try managedContext.fetch(fetchRequest)
+            
+            let sortingType = UserDefaults.standard.string(forKey: "sorting")!
+            let sortingOrder = UserDefaults.standard.string(forKey: "sortingOrder")!
+
+            switch sortingOrder {
+            case "↓":
+                switch sortingType {
+                    
+                    case "Last Added":
+                        records.sort(by: { ($0.value(forKey: "id") as! Int) > ($1.value(forKey: "id") as! Int) } )
+                    case "Artist":
+                        records.sort(by: { ($0.value(forKey: "artist") as! String) < ($1.value(forKey: "artist") as! String) } )
+                    case "Name":
+                        records.sort(by: { ($0.value(forKey: "title") as! String) < ($1.value(forKey: "title") as! String) } )
+                    case "Album":
+                        records.sort(by: { ($0.value(forKey: "album") as! String) < ($1.value(forKey: "album") as! String) } )
+                    case "Year":
+                        records.sort(by: { ($0.value(forKey: "year") as! Int) < ($1.value(forKey: "year") as! Int) } )
+                    default: break
+                    
+                }
+            case "↑":
+                switch sortingType {
+                    
+                case "Last Added":
+                    records.sort(by: { ($0.value(forKey: "id") as! Int) < ($1.value(forKey: "id") as! Int) } )
+                case "Artist":
+                    records.sort(by: { ($0.value(forKey: "artist") as! String) > ($1.value(forKey: "artist") as! String) } )
+                case "Name":
+                    records.sort(by: { ($0.value(forKey: "title") as! String) > ($1.value(forKey: "title") as! String) } )
+                case "Album":
+                    records.sort(by: { ($0.value(forKey: "album") as! String) > ($1.value(forKey: "album") as! String) } )
+                case "Year":
+                    records.sort(by: { ($0.value(forKey: "year") as! Int) > ($1.value(forKey: "year") as! Int) } )
+                default: break
+                    
+                }
+            default: break
+            }
+            
+            table.reloadData()
+            
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }

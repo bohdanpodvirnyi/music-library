@@ -2,7 +2,7 @@
 //  AddingViewController.swift
 //  music-library
 //
-//  Created by hell 'n silence on 4/20/18.
+//  Created by Bohdan Podvirnyi on 4/20/18.
 //  Copyright © 2018 Bohdan Podvirnyi. All rights reserved.
 //
 
@@ -57,7 +57,7 @@ class AddingViewController: UIViewController {
                         record.setValue(albumF, forKey: "album")
                         record.setValue(yearF, forKey: "year")
                         record.setValue(infoF, forKey: "info")
-                        
+                        break
                     }
                     
                 }
@@ -73,7 +73,7 @@ class AddingViewController: UIViewController {
             
             id = UserDefaults.standard.integer(forKey: "id")
             
-            let data = Record(artist: artistF, title: nameF, album: albumF, year: yearF, info: infoF, id: id)!
+            let data = Record(artist: artistF, name: nameF, album: albumF, year: yearF, info: infoF, id: id)!
             
             saveData(data: data)
             
@@ -88,10 +88,13 @@ class AddingViewController: UIViewController {
         artistField.text = artist
         nameField.text = name
         albumField.text = album
-        yearField.text = String(describing: year)
+        if year == 0 {
+            yearField.text = ""
+        } else {
+            yearField.text = String(describing: year)
+        }
         infoField.text = info
         
-        infoField.text = ""
         infoField.layer.borderColor = UIColor.gray.withAlphaComponent(0.4).cgColor
         infoField.layer.borderWidth = 0.5
         infoField.layer.cornerRadius = 7
@@ -111,18 +114,32 @@ class AddingViewController: UIViewController {
         let entity = NSEntityDescription.entity(forEntityName: "Data", in: managedContext)
         let records = NSManagedObject(entity: entity!, insertInto: managedContext)
         records.setValue(data.artist, forKey: "artist")
-        records.setValue(data.title, forKey: "title")
+        records.setValue(data.name, forKey: "title")
         records.setValue(data.album, forKey: "album")
         records.setValue(data.year, forKey: "year")
         records.setValue(data.info, forKey: "info")
         records.setValue(data.id, forKey: "id")
         
         UserDefaults.standard.setValue(id+1, forKey: "id")
-        
         do {
             try managedContext.save()
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destinationViewController = segue.destination as? DetailsViewController {
+            
+            destinationViewController.artist = artistField.text!
+            destinationViewController.name = nameField.text!
+            destinationViewController.album = albumField.text!
+            destinationViewController.year = Int(yearField.text!)!
+            destinationViewController.info = infoField.text!
+            destinationViewController.id = editingId
+            
         }
         
     }

@@ -2,7 +2,7 @@
 //  DetailsViewController.swift
 //  music-library
 //
-//  Created by hell 'n silence on 4/20/18.
+//  Created by Bohdan Podvirnyi on 4/20/18.
 //  Copyright © 2018 Bohdan Podvirnyi. All rights reserved.
 //
 
@@ -38,8 +38,6 @@ class DetailsViewController: UIViewController {
         albumLabel.text = album
         yearLabel.text = String(describing: year)
         infoLabel.text = info
-        
-        print(id)
         
     }
     

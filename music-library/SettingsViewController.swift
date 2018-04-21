@@ -2,7 +2,7 @@
 //  SettingsViewController.swift
 //  music-library
 //
-//  Created by hell 'n silence on 4/21/18.
+//  Created by Bohdan Podvirnyi on 4/21/18.
 //  Copyright © 2018 Bohdan Podvirnyi. All rights reserved.
 //
 
@@ -10,6 +10,22 @@ import UIKit
 import CoreData
 
 class SettingsViewController: UIViewController {
+    
+    @IBOutlet weak var sortingBy: UISegmentedControl!
+    
+    @IBAction func sortingChanged(_ sender: Any) {
+        
+        UserDefaults.standard.set(sortingBy.titleForSegment(at: sortingBy.selectedSegmentIndex), forKey: "sorting")
+        
+    }
+    
+    @IBOutlet weak var sortingOrder: UISegmentedControl!
+    
+    @IBAction func sortingOrderChanged(_ sender: Any) {
+        
+        UserDefaults.standard.set(sortingOrder.titleForSegment(at: sortingOrder.selectedSegmentIndex), forKey: "sortingOrder")
+        
+    }
     
     @IBAction func deleteButton(_ sender: Any) {
         
@@ -27,6 +43,21 @@ class SettingsViewController: UIViewController {
         
         UserDefaults.standard.setValue(0, forKey: "id")
         
+        let alert = UIAlertController(title: "Delete", message: "Data deleted successfully", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: false, completion: nil)
+        
+        self.tabBarController?.selectedIndex = 0
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destinationViewController = segue.destination as? ListViewController {
+        
+            destinationViewController.table.reloadData()
+            
+        }
     }
     
     override func viewDidLoad() {

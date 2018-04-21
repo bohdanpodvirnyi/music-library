@@ -92,7 +92,7 @@
                                 <rect key="frame" x="100" y="412" width="259" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes" returnKeyType="done"/>
                             </textView>
@@ -156,7 +156,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2r-lY-qeC">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2r-lY-qeC">
                                                     <rect key="frame" x="15" y="11" width="173" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -182,7 +182,7 @@
                                         <connections>
                                             <outlet property="albumLabel" destination="T9y-f7-fzS" id="gA0-Cg-gV9"/>
                                             <outlet property="artistLabel" destination="d1B-aH-EKF" id="nBH-rN-eXh"/>
-                                            <outlet property="titleLabel" destination="I2r-lY-qeC" id="DtQ-3O-eYG"/>
+                                            <outlet property="nameLabel" destination="I2r-lY-qeC" id="DtQ-3O-eYG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -198,8 +198,8 @@
                                 <color key="barTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
+                                    <mutableString>name</mutableString>
+                                    <mutableString>name</mutableString>
                                 </scopeButtonTitles>
                             </searchBar>
                         </subviews>
@@ -271,8 +271,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ul5-zL-Mk6">
-                                <rect key="frame" x="117" y="361" width="242" height="150"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ul5-zL-Mk6">
+                                <rect key="frame" x="117" y="361" width="242" height="286"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -328,7 +328,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R92-Wi-dIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2822" y="-841"/>
+            <point key="canvasLocation" x="2821.5999999999999" y="-841.52923538230891"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="kgE-mb-QYj">
@@ -347,14 +347,53 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Delete all data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsB-oj-wnD">
-                                <rect key="frame" x="16" y="104" width="109" height="21"/>
+                                <rect key="frame" x="16" y="541" width="109" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GSP-zF-YGC">
+                                <rect key="frame" x="11" y="213" width="352" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Last Added" width="85"/>
+                                    <segment title="Artist"/>
+                                    <segment title="Name"/>
+                                    <segment title="Album"/>
+                                    <segment title="Year"/>
+                                </segments>
+                                <connections>
+                                    <action selector="sortingChanged:" destination="YHH-HO-SEa" eventType="valueChanged" id="Evy-xJ-E9T"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="bXD-3I-Ot9">
+                                <rect key="frame" x="247" y="286" width="75" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="↑"/>
+                                    <segment title="↓"/>
+                                </segments>
+                                <connections>
+                                    <action selector="sortingOrderChanged:" destination="YHH-HO-SEa" eventType="valueChanged" id="Sgn-SU-8VX"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sorting by :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeV-ZN-wTe">
+                                <rect key="frame" x="16" y="172" width="88" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sorting order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fV4-AL-xS5">
+                                <rect key="frame" x="16" y="289" width="102" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9gB-PN-d4W">
-                                <rect key="frame" x="262" y="100" width="45" height="30"/>
+                                <rect key="frame" x="262" y="537" width="45" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Delete"/>
                                 <connections>
@@ -368,6 +407,8 @@
                     <tabBarItem key="tabBarItem" systemItem="more" id="0vl-4K-J25"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="BCT-Fp-irM" id="XlC-OD-FXn"/>
+                        <outlet property="sortingBy" destination="GSP-zF-YGC" id="Zah-2t-Xck"/>
+                        <outlet property="sortingOrder" destination="bXD-3I-Ot9" id="CcL-0g-izl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ml1-Cw-kSn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -380,7 +421,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1884" y="904"/>
+            <point key="canvasLocation" x="932" y="-842"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ywl-6W-jzK">
@@ -435,7 +476,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="74.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lR-jD-nui">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lR-jD-nui">
                                                     <rect key="frame" x="15" y="11" width="173" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -461,7 +502,7 @@
                                         <connections>
                                             <outlet property="albumLabel" destination="K67-j5-cyB" id="G1L-JX-NnN"/>
                                             <outlet property="artistLabel" destination="rZ7-e2-Iu3" id="Udm-Nj-obk"/>
-                                            <outlet property="titleLabel" destination="0lR-jD-nui" id="TlV-Hm-M91"/>
+                                            <outlet property="nameLabel" destination="0lR-jD-nui" id="ky9-mi-nIO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

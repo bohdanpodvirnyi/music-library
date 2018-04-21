@@ -2,7 +2,7 @@
 //  SearchViewController.swift
 //  music-library
 //
-//  Created by hell 'n silence on 4/21/18.
+//  Created by Bohdan Podvirnyi on 4/21/18.
 //  Copyright © 2018 Bohdan Podvirnyi. All rights reserved.
 //
 
@@ -45,7 +45,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         let result = results[indexPath.row]
         
         cell.artistLabel.text = result.value(forKey: "artist") as? String
-        cell.titleLabel.text = result.value(forKey: "title") as? String
+        cell.nameLabel.text = result.value(forKey: "title") as? String
         cell.albumLabel.text = String(describing: result.value(forKey: "album")!) + " (" + String(describing: result.value(forKey: "year")!) + ")"
         
         return cell
@@ -89,12 +89,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         var predicateList = [NSPredicate]()
         
         let artistPredicate = NSPredicate(format: "artist contains[c] %@", text)
-        let titlePredicate = NSPredicate(format: "title contains[c] %@", text)
+        let namePredicate = NSPredicate(format: "title contains[c] %@", text)
         let albumPredicate = NSPredicate(format: "album contains[c] %@", text)
         let yearPredicate = NSPredicate(format: "year contains[c] %@", text.description)
         let infoPredicate = NSPredicate(format: "info contains[c] %@", text)
         
-        let orCompoundPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.or, subpredicates: [artistPredicate, titlePredicate, albumPredicate, yearPredicate, infoPredicate])
+        let orCompoundPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.or, subpredicates: [artistPredicate, namePredicate, albumPredicate, yearPredicate, infoPredicate])
         
         predicateList.append(orCompoundPredicate)
         
