@@ -9,14 +9,38 @@
 import UIKit
 import CoreData
 
-class ListViewController: UITableViewController {
+class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var table: UITableView!
     
     var records: [NSManagedObject] = []
+    
     var chosenRow: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loading()
+        
+        if !isAppAlreadyLaunchedOnce() {
+            
+            UserDefaults.standard.setValue(0, forKey: "id")
+            
+        }
+    }
+    
+    func isAppAlreadyLaunchedOnce() -> Bool {
+        
+        if UserDefaults.standard.bool(forKey: "isAppAlreadyLaunchedOnce") {
+            print("true")
+            return true
+            
+        } else {
+            
+            UserDefaults.standard.set(true, forKey: "isAppAlreadyLaunchedOnce")
+            print("false")
+            return false
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,15 +50,15 @@ class ListViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return records.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "cell"
         
@@ -46,26 +70,27 @@ class ListViewController: UITableViewController {
         
         cell.artistLabel.text = record.value(forKey: "artist") as? String
         cell.titleLabel.text = record.value(forKey: "title") as? String
-        cell.albumLabel.text = record.value(forKey: "album") as? String
-        cell.yearLabel.text = record.value(forKey: "year") as? String
+        cell.albumLabel.text = String(describing: record.value(forKey: "album")!) + " (" + String(describing: record.value(forKey: "year")!) + ")"
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         chosenRow = indexPath.row
-        performSegue(withIdentifier: "recordInfo", sender: self)
+        performSegue(withIdentifier: "toRecordInfo", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
         if let destinationViewController = segue.destination as? DetailsViewController {
-            print(records[chosenRow])
+            
             destinationViewController.artist = String(describing: records[chosenRow].value(forKey: "artist")!)
             destinationViewController.name = String(describing: records[chosenRow].value(forKey: "title")!)
             destinationViewController.album = String(describing: records[chosenRow].value(forKey: "album")!)
             destinationViewController.year = records[chosenRow].value(forKey: "year") as! Int
             destinationViewController.info = String(describing: records[chosenRow].value(forKey: "info")!)
+            destinationViewController.id = records[chosenRow].value(forKey: "id") as! Int
+            
         }
         
     }

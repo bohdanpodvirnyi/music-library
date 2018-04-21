@@ -16,10 +16,11 @@ class Record {
     var album: String
     var year: Int
     var info: String
+    var id: Int
     
     
     //Initialization
-    init?(artist: String, title: String, album: String, year: Int, info: String)
+    init?(artist: String, title: String, album: String, year: Int, info: String, id: Int)
     {
         
         self.artist = artist
@@ -27,6 +28,7 @@ class Record {
         self.album = album
         self.year = year
         self.info = info
+        self.id = id
         
     }
 }

@@ -3,11 +3,12 @@
     <entity name="Data" representedClassName="Data" syncable="YES" codeGenerationType="class">
         <attribute name="album" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="info" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Data" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Data" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

@@ -46,8 +46,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         
         cell.artistLabel.text = result.value(forKey: "artist") as? String
         cell.titleLabel.text = result.value(forKey: "title") as? String
-        cell.albumLabel.text = result.value(forKey: "album") as? String
-        cell.yearLabel.text = result.value(forKey: "year") as? String
+        cell.albumLabel.text = String(describing: result.value(forKey: "album")!) + " (" + String(describing: result.value(forKey: "year")!) + ")"
         
         return cell
     }
@@ -92,7 +91,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         let artistPredicate = NSPredicate(format: "artist contains[c] %@", text)
         let titlePredicate = NSPredicate(format: "title contains[c] %@", text)
         let albumPredicate = NSPredicate(format: "album contains[c] %@", text)
-        let yearPredicate = NSPredicate(format: "year contains[c] %@", text)
+        let yearPredicate = NSPredicate(format: "year contains[c] %@", text.description)
         let infoPredicate = NSPredicate(format: "info contains[c] %@", text)
         
         let orCompoundPredicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.or, subpredicates: [artistPredicate, titlePredicate, albumPredicate, yearPredicate, infoPredicate])

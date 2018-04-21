@@ -16,11 +16,18 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     
+    @IBAction func editButton(_ sender: Any) {
+        
+        performSegue(withIdentifier: "toAdding", sender: self)
+        
+    }
+    
     var artist: String = ""
     var name: String = ""
     var album: String = ""
     var year: Int = 0
     var info: String = ""
+    var id: Int = 0
 
     
     override func viewDidLoad() {
@@ -31,6 +38,25 @@ class DetailsViewController: UIViewController {
         albumLabel.text = album
         yearLabel.text = String(describing: year)
         infoLabel.text = info
+        
+        print(id)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destinationViewController = segue.destination as? AddingViewController {
+            
+            destinationViewController.artist = artistLabel.text!
+            destinationViewController.name = nameLabel.text!
+            destinationViewController.album = albumLabel.text!
+            destinationViewController.year = Int(yearLabel.text!)!
+            destinationViewController.info = infoLabel.text!
+            
+            destinationViewController.edit = true
+            destinationViewController.editingId = id
+            
+        }
         
     }
 
