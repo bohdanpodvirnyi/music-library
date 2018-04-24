@@ -43,8 +43,10 @@ class AddingViewController: UIViewController {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return
             }
+            
             let managedContext = appDelegate.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Data")
+            
             do {
                 records = try managedContext.fetch(fetchRequest)
                 
@@ -58,12 +60,15 @@ class AddingViewController: UIViewController {
                         record.setValue(yearF, forKey: "year")
                         record.setValue(infoF, forKey: "info")
                         break
+                        
                     }
                     
                 }
                 
             } catch let error as NSError {
+                
                 print("Could not fetch. \(error), \(error.userInfo)")
+                
             }
             
             performSegue(withIdentifier: "toDetails", sender: self)
@@ -83,26 +88,38 @@ class AddingViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        self.hideKeyboardWhenTappedAround() 
         
         artistField.text = artist
         nameField.text = name
         albumField.text = album
+        
         if year == 0 {
+            
             yearField.text = ""
+            
         } else {
+            
             yearField.text = String(describing: year)
+            
         }
+        
         infoField.text = info
         
         infoField.layer.borderColor = UIColor.gray.withAlphaComponent(0.4).cgColor
         infoField.layer.borderWidth = 0.5
         infoField.layer.cornerRadius = 7
         infoField.clipsToBounds = true
+    
     }
 
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
+        
     }
     
     func saveData(data: Record) {
@@ -110,9 +127,11 @@ class AddingViewController: UIViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
+        
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "Data", in: managedContext)
         let records = NSManagedObject(entity: entity!, insertInto: managedContext)
+        
         records.setValue(data.artist, forKey: "artist")
         records.setValue(data.name, forKey: "title")
         records.setValue(data.album, forKey: "album")
@@ -121,10 +140,15 @@ class AddingViewController: UIViewController {
         records.setValue(data.id, forKey: "id")
         
         UserDefaults.standard.setValue(id+1, forKey: "id")
+        
         do {
+            
             try managedContext.save()
+            
         } catch let error as NSError {
+            
             print("Could not save. \(error), \(error.userInfo)")
+            
         }
         
     }

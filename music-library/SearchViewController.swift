@@ -20,18 +20,25 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
     var chosenRow: Int = 0
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         searchBar.delegate = self
         
-        // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
+    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
         return results.count
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -39,7 +46,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         let cellIdentifier = "cell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ListViewCell else {
+            
             fatalError("The dequeued cell is not an instance of ListViewCell.")
+            
         }
         
         let result = results[indexPath.row]
@@ -49,32 +58,40 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         cell.albumLabel.text = String(describing: result.value(forKey: "album")!) + " (" + String(describing: result.value(forKey: "year")!) + ")"
         
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         chosenRow = indexPath.row
         performSegue(withIdentifier: "recordInfo", sender: self)
+    
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let destinationViewController = segue.destination as? DetailsViewController {
-            print(results[chosenRow])
+            
             destinationViewController.artist = String(describing: results[chosenRow].value(forKey: "artist")!)
             destinationViewController.name = String(describing: results[chosenRow].value(forKey: "title")!)
             destinationViewController.album = String(describing: results[chosenRow].value(forKey: "album")!)
             destinationViewController.year = results[chosenRow].value(forKey: "year") as! Int
             destinationViewController.info = String(describing: results[chosenRow].value(forKey: "info")!)
+        
         }
         
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
         search(text: searchText)
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
         search(text: searchBar.text!)
+        
     }
     
     func search(text: String) {
@@ -82,8 +99,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-        let managedContext = appDelegate.persistentContainer.viewContext
         
+        let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Data")
         
         var predicateList = [NSPredicate]()
@@ -100,19 +117,23 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
         
         fetchRequest.predicate = NSCompoundPredicate(type: NSCompoundPredicate.LogicalType.and, subpredicates: predicateList)
         
-        do{
+        do {
+            
             results = try managedContext.fetch(fetchRequest)
             table.reloadData()
             
-        }catch{
-            print("error")
+        } catch let error as NSError {
+            
+            print("Could not fetch. \(error), \(error.userInfo)")
+            
         }
+        
     }
     
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
     
-
 }

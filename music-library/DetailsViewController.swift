@@ -31,6 +31,7 @@ class DetailsViewController: UIViewController {
 
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         artistLabel.text = artist
@@ -59,6 +60,7 @@ class DetailsViewController: UIViewController {
     }
 
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
         
     }

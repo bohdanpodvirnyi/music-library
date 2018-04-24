@@ -18,6 +18,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var chosenRow: Int = 0
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         if !isAppAlreadyLaunchedOnce() {
@@ -52,18 +53,23 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     override func didReceiveMemoryWarning() {
+        
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
+    
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return records.count
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -71,7 +77,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cellIdentifier = "cell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ListViewCell else {
+            
             fatalError("The dequeued cell is not an instance of ListViewCell.")
+            
         }
         
         let record = records[indexPath.row]
@@ -81,11 +89,14 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.albumLabel.text = String(describing: record.value(forKey: "album")!) + " (" + String(describing: record.value(forKey: "year")!) + ")"
         
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         chosenRow = indexPath.row
         performSegue(withIdentifier: "toRecordInfo", sender: self)
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -108,16 +119,21 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
+        
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Data")
+        
         do {
+            
             records = try managedContext.fetch(fetchRequest)
             
             let sortingType = UserDefaults.standard.string(forKey: "sorting")!
             let sortingOrder = UserDefaults.standard.string(forKey: "sortingOrder")!
 
             switch sortingOrder {
+                
             case "↓":
+                
                 switch sortingType {
                     
                     case "Last Added":
@@ -133,7 +149,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     default: break
                     
                 }
+                
             case "↑":
+                
                 switch sortingType {
                     
                 case "Last Added":
@@ -149,13 +167,17 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 default: break
                     
                 }
+                
             default: break
+                
             }
             
             table.reloadData()
             
         } catch let error as NSError {
+            
             print("Could not fetch. \(error), \(error.userInfo)")
+            
         }
         
     }
