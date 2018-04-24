@@ -3,6 +3,7 @@ This is the repository for the iOS app Music Library.
 
 ## Build Info
 
+- Xcode 9.3
 - Swift 4.1
 - iOS Deployment Target - iOS 11.3
 - Tested on iPhone 8
