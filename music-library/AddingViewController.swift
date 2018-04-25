@@ -106,6 +106,12 @@ class AddingViewController: UIViewController {
         
         super.viewDidLoad()
         
+        if edit {
+            
+            self.button.isEnabled = true
+            
+        }
+        
         self.hideKeyboardWhenTappedAround() 
         
         artistField.text = artist

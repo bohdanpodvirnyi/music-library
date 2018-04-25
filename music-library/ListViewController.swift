@@ -21,15 +21,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         super.viewDidLoad()
         
-        if !isAppAlreadyLaunchedOnce() {
+        if !isAppAlreadyLaunched() {
             
             UserDefaults.standard.set(0, forKey: "id")
             UserDefaults.standard.set("Last Added", forKey: "sorting")
             UserDefaults.standard.set("↓", forKey: "sortingOrder")
             
         }
-        
-        loading()
         
     }
     
@@ -39,7 +37,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    func isAppAlreadyLaunchedOnce() -> Bool {
+    func isAppAlreadyLaunched() -> Bool {
         
         if UserDefaults.standard.bool(forKey: "isAppAlreadyLaunchedOnce") {
             return true
@@ -57,8 +55,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.didReceiveMemoryWarning()
         
     }
-
-    // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -98,6 +94,38 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         performSegue(withIdentifier: "toRecordInfo", sender: self)
         
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            
+            self.chosenRow = indexPath.row
+            self.performSegue(withIdentifier: "toEditRecord", sender: self)
+            
+        }
+        
+        edit.backgroundColor = UIColor.lightGray
+        
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            
+            self.chosenRow = indexPath.row
+            self.deleting()
+            
+        }
+        
+        delete.backgroundColor = UIColor.red
+        
+        return [delete, edit]
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
@@ -109,6 +137,19 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             destinationViewController.year = records[chosenRow].value(forKey: "year") as! Int
             destinationViewController.info = String(describing: records[chosenRow].value(forKey: "info")!)
             destinationViewController.id = records[chosenRow].value(forKey: "id") as! Int
+            
+        }
+        
+        if let destinationViewController = segue.destination as? EditingViewController {
+            
+            destinationViewController.artist = String(describing: records[chosenRow].value(forKey: "artist")!)
+            destinationViewController.name = String(describing: records[chosenRow].value(forKey: "title")!)
+            destinationViewController.album = String(describing: records[chosenRow].value(forKey: "album")!)
+            destinationViewController.year = records[chosenRow].value(forKey: "year") as! Int
+            destinationViewController.info = String(describing: records[chosenRow].value(forKey: "info")!)
+            destinationViewController.editingId = records[chosenRow].value(forKey: "id") as! Int
+            
+            destinationViewController.edit = true
             
         }
         
@@ -177,6 +218,37 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } catch let error as NSError {
             
             print("Could not fetch. \(error), \(error.userInfo)")
+            
+        }
+        
+    }
+    
+    func deleting() {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequestToDelete = NSFetchRequest<NSFetchRequestResult>(entityName: "Data")
+        
+        let predicate = NSPredicate(format: "id == %d", (records[chosenRow].value(forKey: "id") as! Int))
+        fetchRequestToDelete.predicate = predicate
+        
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequestToDelete)
+        do {
+            
+            try managedContext.execute(deleteRequest)
+            
+            let alert = UIAlertController(title: "Delete", message: "Record deleted successfully", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: false, completion: nil)
+            
+            self.loading()
+            
+        } catch let error as NSError {
+            
+            print("Could not delete. \(error), \(error.userInfo)")
             
         }
         

@@ -18,7 +18,7 @@ class DetailsViewController: UIViewController {
     
     @IBAction func editButton(_ sender: Any) {
         
-        performSegue(withIdentifier: "toAdding", sender: self)
+        performSegue(withIdentifier: "toEditRecord", sender: self)
         
     }
     
@@ -44,7 +44,7 @@ class DetailsViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if let destinationViewController = segue.destination as? AddingViewController {
+        if let destinationViewController = segue.destination as? EditingViewController {
             
             destinationViewController.artist = artistLabel.text!
             destinationViewController.name = nameLabel.text!

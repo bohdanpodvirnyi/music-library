@@ -17,8 +17,7 @@ class Record {
     var info: String
     var id: Int
     
-    init?(artist: String, name: String, album: String, year: Int, info: String, id: Int)
-    {
+    init?(artist: String, name: String, album: String, year: Int, info: String, id: Int) {
         
         self.artist = artist
         self.name = name

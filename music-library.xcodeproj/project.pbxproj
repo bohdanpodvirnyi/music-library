@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FE7B2C120910726007F6A14 /* EditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FE7B2C020910726007F6A14 /* EditingViewController.swift */; };
 		2FF6E60C208A55E700D9ACB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6E60B208A55E700D9ACB9 /* AppDelegate.swift */; };
 		2FF6E611208A55E700D9ACB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FF6E60F208A55E700D9ACB9 /* Main.storyboard */; };
 		2FF6E614208A55E700D9ACB9 /* music_library.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6E612208A55E700D9ACB9 /* music_library.xcdatamodeld */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2FE7B2C020910726007F6A14 /* EditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditingViewController.swift; sourceTree = "<group>"; };
 		2FF6E608208A55E700D9ACB9 /* music-library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "music-library.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FF6E60B208A55E700D9ACB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FF6E610208A55E700D9ACB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				2FF6E620208A573B00D9ACB9 /* ListViewController.swift */,
 				2FF6E628208A6CD100D9ACB9 /* ListViewCell.swift */,
 				2FF6E626208A699B00D9ACB9 /* AddingViewController.swift */,
+				2FE7B2C020910726007F6A14 /* EditingViewController.swift */,
 				2FF6E62C208A948600D9ACB9 /* SettingsViewController.swift */,
 				2FF6E624208A613100D9ACB9 /* DetailsViewController.swift */,
 				2FF6E622208A577A00D9ACB9 /* Record.swift */,
@@ -159,6 +162,7 @@
 				2FF6E614208A55E700D9ACB9 /* music_library.xcdatamodeld in Sources */,
 				2FF6E623208A577A00D9ACB9 /* Record.swift in Sources */,
 				2FF6E621208A573B00D9ACB9 /* ListViewController.swift in Sources */,
+				2FE7B2C120910726007F6A14 /* EditingViewController.swift in Sources */,
 				2FF6E62F208AA82700D9ACB9 /* SearchViewController.swift in Sources */,
 				2FF6E60C208A55E700D9ACB9 /* AppDelegate.swift in Sources */,
 				2FF6E625208A613100D9ACB9 /* DetailsViewController.swift in Sources */,
