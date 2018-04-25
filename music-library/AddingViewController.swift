@@ -30,6 +30,21 @@ class AddingViewController: UIViewController {
     
     var editingId: Int = 0
     
+    @IBOutlet weak var button: UIButton!
+    
+    @IBAction func blockingButton(_ sender: Any) {
+        
+        if artistField.text == "" || nameField.text == "" || albumField.text == "" || yearField.text == ""
+        {
+            button.isEnabled = false
+        }
+        else
+        {
+            button.isEnabled = true
+        }
+        
+    }
+
     @IBAction func saveButton(_ sender: Any) {
         
         let artistF = artistField.text!
