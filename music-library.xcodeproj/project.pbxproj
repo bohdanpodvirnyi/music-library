@@ -71,19 +71,19 @@
 			isa = PBXGroup;
 			children = (
 				2FF6E60F208A55E700D9ACB9 /* Main.storyboard */,
-				2FF6E62E208AA82700D9ACB9 /* SearchViewController.swift */,
 				2FF6E620208A573B00D9ACB9 /* ListViewController.swift */,
 				2FF6E628208A6CD100D9ACB9 /* ListViewCell.swift */,
+				2FF6E624208A613100D9ACB9 /* DetailsViewController.swift */,
 				2FF6E626208A699B00D9ACB9 /* AddingViewController.swift */,
 				2FE7B2C020910726007F6A14 /* EditingViewController.swift */,
+				2FF6E62E208AA82700D9ACB9 /* SearchViewController.swift */,
 				2FF6E62C208A948600D9ACB9 /* SettingsViewController.swift */,
-				2FF6E624208A613100D9ACB9 /* DetailsViewController.swift */,
 				2FF6E622208A577A00D9ACB9 /* Record.swift */,
+				2FF6E60B208A55E700D9ACB9 /* AppDelegate.swift */,
 				2FF6E612208A55E700D9ACB9 /* music_library.xcdatamodeld */,
 				2FF6E61A208A55E800D9ACB9 /* Info.plist */,
 				2FF6E615208A55E800D9ACB9 /* Assets.xcassets */,
 				2FF6E617208A55E800D9ACB9 /* LaunchScreen.storyboard */,
-				2FF6E60B208A55E700D9ACB9 /* AppDelegate.swift */,
 			);
 			path = "music-library";
 			sourceTree = "<group>";

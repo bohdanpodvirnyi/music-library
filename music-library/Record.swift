@@ -10,6 +10,7 @@ import UIKit
 
 class Record {
     
+    //MARK: - Properties
     var artist: String
     var name: String
     var album: String
@@ -17,14 +18,13 @@ class Record {
     var info: String
     var id: Int
     
+    //MARK: - Initialization
     init?(artist: String, name: String, album: String, year: Int, info: String, id: Int) {
-        
         self.artist = artist
         self.name = name
         self.album = album
         self.year = year
         self.info = info
         self.id = id
-        
     }
 }

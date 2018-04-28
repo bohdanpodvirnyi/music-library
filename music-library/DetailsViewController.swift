@@ -16,12 +16,12 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     
+    //MARK: - Action for Edit button
     @IBAction func editButton(_ sender: Any) {
-        
         performSegue(withIdentifier: "toEditRecord", sender: self)
-        
     }
     
+    //MARK: - Properties
     var artist: String = ""
     var name: String = ""
     var album: String = ""
@@ -31,38 +31,26 @@ class DetailsViewController: UIViewController {
 
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
+        //MARK: - Initializing labels
         artistLabel.text = artist
         nameLabel.text = name
         albumLabel.text = album
         yearLabel.text = String(describing: year)
         infoLabel.text = info
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        //MARK: - Segue to EditingViewController
         if let destinationViewController = segue.destination as? EditingViewController {
-            
             destinationViewController.artist = artistLabel.text!
             destinationViewController.name = nameLabel.text!
             destinationViewController.album = albumLabel.text!
             destinationViewController.year = Int(yearLabel.text!)!
             destinationViewController.info = infoLabel.text!
-            
             destinationViewController.edit = true
             destinationViewController.editingId = id
-            
         }
-        
     }
-
-    override func didReceiveMemoryWarning() {
-        
-        super.didReceiveMemoryWarning()
-        
-    }
-
 }
