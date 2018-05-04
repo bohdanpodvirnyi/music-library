@@ -64,7 +64,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDa
 
     //MARK: - Action when text in SearchBar did change
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText != "" {
+            searchBar.showsCancelButton = true
+        }
         search(text: searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        resignFirstResponder()
+        searchBar.showsCancelButton = false
     }
     
     //MARK: - Searching in CoreData

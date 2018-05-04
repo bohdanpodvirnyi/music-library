@@ -40,11 +40,19 @@ class EditingViewController: UIViewController {
     
     //MARK: - Action for Save button
     @IBAction func saveButton(_ sender: Any) {
-        let artistF = artistField.text!
-        let nameF = nameField.text!
-        let albumF = albumField.text!
-        let yearF = Int(yearField.text!)!
-        let infoF = infoField.text!
+        artist = artistField.text!
+        name = nameField.text!
+        album = albumField.text!
+        if (Int(yearField.text!) != nil) {
+            year = Int(yearField.text!)!
+        } else {
+            yearField.layer.borderColor = UIColor.red.cgColor
+            infoField.layer.borderWidth = 0.5
+            infoField.layer.cornerRadius = 7
+            infoField.clipsToBounds = true
+            self.showAlert(title: "Error", message: "You cannot use letters in the field \"Year\"")
+            return
+        }
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -54,18 +62,18 @@ class EditingViewController: UIViewController {
             records = try managedContext.fetch(fetchRequest)
             for record in records {
                 if (record.value(forKey: "id") as! Int == editingId) {
-                    record.setValue(artistF, forKey: "artist")
-                    record.setValue(nameF, forKey: "title")
-                    record.setValue(albumF, forKey: "album")
-                    record.setValue(yearF, forKey: "year")
-                    record.setValue(infoF, forKey: "info")
+                    record.setValue(artist, forKey: "artist")
+                    record.setValue(name, forKey: "title")
+                    record.setValue(album, forKey: "album")
+                    record.setValue(year, forKey: "year")
+                    record.setValue(info, forKey: "info")
                     break
                 }
             }
+            performSegue(withIdentifier: "toDetails", sender: self)
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            self.showAlert(title: "Error - Could not fetch", message: String(describing: error))
         }
-        performSegue(withIdentifier: "toDetails", sender: self)
     }
     
     override func viewDidLoad() {

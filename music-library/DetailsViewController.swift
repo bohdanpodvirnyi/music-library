@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailsViewController: UIViewController {
 
@@ -15,6 +16,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var albumLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
+    
+    var records: [NSManagedObject] = []
     
     //MARK: - Action for Edit button
     @IBAction func editButton(_ sender: Any) {
