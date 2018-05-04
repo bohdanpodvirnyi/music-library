@@ -1,11 +1,12 @@
 # music-library
 This is the repository for the iOS app Music Library. <br>
-<img src="https://user-images.githubusercontent.com/31819391/39645648-bd0b7880-4fe1-11e8-8c2d-8a249fcb3588.png" alt="screenshot1" height="250px">
-<img src="https://user-images.githubusercontent.com/31819391/39646628-bc6f3288-4fe4-11e8-8411-c18f1f2a1076.png" alt="screenshot2" height="250px">
-<img src="https://user-images.githubusercontent.com/31819391/39646629-bc8ce18e-4fe4-11e8-9c5b-34dc3e96404c.png" alt="screenshot3" height="250px">
-<img src="https://user-images.githubusercontent.com/31819391/39646626-bc33c374-4fe4-11e8-8050-40f4e668a18f.png" alt="screenshot4" height="250px">
-<img src="https://user-images.githubusercontent.com/31819391/39646627-bc51ea66-4fe4-11e8-9c7d-0041e861dd29.png" alt="screenshot5" height="250px">
-<img src="https://user-images.githubusercontent.com/31819391/39646624-bc11adb6-4fe4-11e8-886a-6424ab0b3c76.png" alt="screenshot6" height="250px">
+<img src="https://user-images.githubusercontent.com/31819391/39645648-bd0b7880-4fe1-11e8-8c2d-8a249fcb3588.png" alt="screenshot1" height="200px">
+<img src="https://user-images.githubusercontent.com/31819391/39646628-bc6f3288-4fe4-11e8-8411-c18f1f2a1076.png" alt="screenshot2" height="200px">
+<img src="https://user-images.githubusercontent.com/31819391/39647125-5d5e289c-4fe6-11e8-8b13-18de1f29b2db.png" alt="screenshot7" height="200px">
+<img src="https://user-images.githubusercontent.com/31819391/39646629-bc8ce18e-4fe4-11e8-9c5b-34dc3e96404c.png" alt="screenshot3" height="200px">
+<img src="https://user-images.githubusercontent.com/31819391/39646626-bc33c374-4fe4-11e8-8050-40f4e668a18f.png" alt="screenshot4" height="200px">
+<img src="https://user-images.githubusercontent.com/31819391/39646627-bc51ea66-4fe4-11e8-9c7d-0041e861dd29.png" alt="screenshot5" height="200px">
+<img src="https://user-images.githubusercontent.com/31819391/39646624-bc11adb6-4fe4-11e8-886a-6424ab0b3c76.png" alt="screenshot6" height="200px">
 
 
 ## Build Info
