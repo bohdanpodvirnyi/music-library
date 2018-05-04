@@ -6,7 +6,7 @@ This is the repository for the iOS app Music Library. <br>
 <img src="https://user-images.githubusercontent.com/31819391/39646626-bc33c374-4fe4-11e8-8050-40f4e668a18f.png" alt="screenshot4" height="250px">
 <img src="https://user-images.githubusercontent.com/31819391/39646627-bc51ea66-4fe4-11e8-9c7d-0041e861dd29.png" alt="screenshot5" height="250px">
 <img src="https://user-images.githubusercontent.com/31819391/39646624-bc11adb6-4fe4-11e8-886a-6424ab0b3c76.png" alt="screenshot6" height="250px">
-#images{ white-space: nowrap;}
+
 
 ## Build Info
 
